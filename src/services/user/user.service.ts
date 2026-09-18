@@ -1,15 +1,26 @@
 import { Injectable } from '@nestjs/common';
-import { UserDto } from '../../UserDTO/user.dto';
 
 @Injectable()
 export class UserService {
-  private users: UserDto[] = [];
+  private readonly users = [
+    {
+      apiKey: 'userA101',
+      name: 'userA',
+      email: 'userA@example.com',
+    },
+    {
+      apiKey: 'userB102',
+      name: 'userB',
+      email: 'userB@example.com',
+    },
+    {
+      apiKey: 'userC103',
+      name: 'userC',
+      email: 'userC@example.com',
+    },
+  ];
 
-  createUser(user: UserDto): void {
-    this.users.push(user);
-  }
-
-  getAllUsers(): UserDto[] {
-    return this.users;
+  getUsers(apikey: string) {
+    return this.users.find((user) => user.apiKey === apikey);
   }
 }
